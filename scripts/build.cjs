@@ -1,0 +1,1 @@
+const fs=require('node:fs');const path=require('node:path');const base=path.resolve(__dirname,'..');for(const name of ['index.html','styles.css','app.js','vercel.json','social-cover.svg','favicon.svg']){if(!fs.existsSync(path.join(base,name)))throw Error('Missing '+name)}console.log('Static site assets verified; deploy repository root with Vercel Other preset.');
