@@ -2,12 +2,28 @@
   "name": "unitedhealth-group-india-tech-jobs-directory",
   "version": "1.0.0",
   "private": true,
-  "description": "Dependency-free static job directory for Vercel",
+  "description": "Curated directory of official UnitedHealth Group and Optum technology openings in India",
   "scripts": {
-    "test": "node --test tests/*.test.cjs",
-    "build": "node scripts/build.cjs"
+    "test": "node --test tests/jobs.test.mjs",
+    "build": "node scripts/validate.mjs && next build && node scripts/export-scripts.mjs",
+    "dev": "next dev",
+    "test:export": "node --test tests/export.test.mjs"
   },
   "engines": {
-    "node": "22.x"
-  }
+    "node": "^22.18.0 || ^24.0.0"
+  },
+  "dependencies": {
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2"
+  },
+  "type": "module"
 }

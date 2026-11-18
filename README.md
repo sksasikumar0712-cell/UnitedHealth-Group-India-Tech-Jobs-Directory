@@ -1,32 +1,41 @@
 # UnitedHealth Group India Tech Jobs Directory
 
-Independent, mobile-first job directory curated by Product with Sasi. Search curated roles and visit the official UnitedHealth Group/Optum application page for each job.
+An independent job directory curated by Product with Sasi. Search Indian technology roles and open each posting on the official UnitedHealth Group careers site.
 
-## Local setup
+## Local development
 
-Requires Node.js 22.
+Use Node.js 22.18 or newer on the 22 release line, or Node.js 24.
 
 ```sh
+npm ci
 npm test
-npm run build
+npm run dev
 ```
 
-The build produces **`dist/`** with only public web assets. To preview locally, serve the output directory (for example, `python3 -m http.server 8080 --directory dist`).
+To build and verify the same static files Vercel serves:
 
-## Deploy or redeploy on Vercel
+```sh
+SITE_URL=https://example.org npm run build
+npm run test:export
+python3 -m http.server 8080 --directory dist
+```
 
-1. Import `sksasikumar0712-cell/UnitedHealth-Group-India-Tech-Jobs-Directory` from GitHub or open the existing Vercel project.
-2. Keep **Root Directory** at the repository root (`./`).
-3. Use **Other** framework preset; `vercel.json` explicitly sets `framework: null`, `buildCommand: npm run build`, and `outputDirectory: dist`.
-4. Deploy or select the newest commit and **Redeploy**. A connected GitHub project should automatically start a fresh deployment after a push.
-5. Check that the build log says `Built 5 public assets in dist/ for Vercel.` and that the URL loads the job directory with styling and filters.
+Use your actual HTTPS origin for a production build. The Python preview serves the export on localhost. Vercel applies the response headers in `vercel.json`.
 
-**Fix for `STATIC_BUILD_NO_OUT_DIR`:** An earlier build script only verified files and never generated an output folder. The explicit static build now copies its allowlisted assets to `dist/`, which matches Vercel's output setting.
+## Deploy on Vercel
 
-## Maintenance
+1. Open the Vercel project connected to `sksasikumar0712-cell/UnitedHealth-Group-India-Tech-Jobs-Directory`.
+2. Use the repository root, the **Other** framework preset, `npm run build`, and `dist` as the output directory. Next.js generates the static export during that build. These settings are declared in `vercel.json`.
+3. Set `SITE_URL` to the project's public HTTPS origin for share previews, canonical URLs and the sitemap. If Vercel exposes `VERCEL_PROJECT_PRODUCTION_URL`, the build can use that as its default.
+4. After approving deployment, manually deploy the desired commit or link the local checkout with `npx vercel link` and run `npx vercel --prod`. Git-triggered deployment is disabled in `vercel.json`.
+5. Check the public site, `/robots.txt`, `/sitemap.xml`, the sharing image and security headers.
 
-Keep job entries in `app.js` accurate and remove expired jobs. Never publish application links outside the approved official careers domain. The site is not associated with UnitedHealth Group or Optum.
+## Maintain the listings
+
+Edit `data/jobs.json`. Before adding a listing, open the specific official careers page and verify its title, company, primary location, requisition ID if available, and Apply button. Categories are directory labels based on the job function. Remove closed or unverifiable listings. The build validates the data shape, duplicate IDs, and exact HTTPS job URL format. The build works offline after dependencies are installed.
+
+The profile photo comes from the header of the supplied SurveySparrow reference. The LinkedIn shortcuts use the direct HTTPS profile URL, which lets devices open LinkedIn when their current browser allows app links.
 
 ## Security
 
-Only the public assets in `dist/` are deployed. No user accounts, DB, API keys or tracking. Strict Vercel HTTP security headers, DOM text rendering and approved job links are enforced. Periodically audit dependencies and GitHub access.
+The site ships static files. Search runs in the browser. The Vercel CSP limits scripts and assets to the site origin, and the export step puts Next.js bootstrap scripts in local files. Run `npm audit` and `npm audit --omit=dev` after dependency updates.
