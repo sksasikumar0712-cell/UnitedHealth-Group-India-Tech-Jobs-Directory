@@ -1,1 +1,13 @@
-{"name":"unitedhealth-group-india-tech-jobs-directory","version":"1.0.0","private":true,"description":"Dependency-free static job directory for Vercel","scripts":{"test":"node --test tests/*.test.cjs","build":"node scripts/build.cjs"},"engines":{"node":">=18"}}
+{
+  "name": "unitedhealth-group-india-tech-jobs-directory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency-free static job directory for Vercel",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build.cjs"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
