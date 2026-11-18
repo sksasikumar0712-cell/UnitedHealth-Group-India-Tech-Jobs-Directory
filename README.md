@@ -34,7 +34,7 @@ Use your actual HTTPS origin for a production build. The Python preview serves t
 
 Edit `data/jobs.json`. Before adding a listing, open the specific official careers page and verify its title, company, primary location, requisition ID if available, and Apply button. Categories are directory labels based on the job function. Remove closed or unverifiable listings. The build validates the data shape, duplicate IDs, and exact HTTPS job URL format. The build works offline after dependencies are installed.
 
-The profile photo comes from the header of the supplied SurveySparrow reference. The LinkedIn shortcuts use the direct HTTPS profile URL, which lets devices open LinkedIn when their current browser allows app links.
+The profile photo comes from the header of the supplied SurveySparrow reference. The LinkedIn shortcuts use the supplied OpeninApp link.
 
 ## Security
 

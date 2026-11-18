@@ -28,7 +28,7 @@ test('static export has local assets, direct application links and external boot
     }
   }
   const html = readFileSync(new URL('index.html', output), 'utf8');
-  const profile = 'href="https://www.linkedin.com/in/sasikumarsampath/"';
+  const profile = 'href="https://linkedin.openinapp.co/f9dyq"';
   assert.equal(html.split(profile).length - 1, 2);
   assert.match(html, /src="\/sasi\.webp"/);
   const jobs = JSON.parse(readFileSync(new URL('../data/jobs.json', import.meta.url)));

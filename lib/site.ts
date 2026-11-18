@@ -1,6 +1,6 @@
 export const title = 'UHG Tech Careers | UnitedHealth Group and Optum India';
 export const description = 'Discover opportunities across Product, AI/ML, Software Engineering, Cloud and more.';
-export const linkedIn = 'https://www.linkedin.com/in/sasikumarsampath/';
+export const linkedIn = 'https://linkedin.openinapp.co/f9dyq';
 
 export const siteUrl = process.env.SITE_URL
   ? new URL(process.env.SITE_URL)
