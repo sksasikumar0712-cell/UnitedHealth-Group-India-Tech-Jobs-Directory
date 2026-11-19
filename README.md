@@ -27,14 +27,15 @@ Use your actual HTTPS origin for a production build. The Python preview serves t
 1. Open the Vercel project connected to `sksasikumar0712-cell/UnitedHealth-Group-India-Tech-Jobs-Directory`.
 2. Use the repository root, the **Other** framework preset, `npm run build`, and `dist` as the output directory. Next.js generates the static export during that build. These settings are declared in `vercel.json`.
 3. Set `SITE_URL` to the project's public HTTPS origin for share previews, canonical URLs and the sitemap. If Vercel exposes `VERCEL_PROJECT_PRODUCTION_URL`, the build can use that as its default.
-4. After approving deployment, manually deploy the desired commit or link the local checkout with `npx vercel link` and run `npx vercel --prod`. Git-triggered deployment is disabled in `vercel.json`.
-5. Check the public site, `/robots.txt`, `/sitemap.xml`, the sharing image and security headers.
+4. Push to `main` to trigger a production deployment. Git-triggered deployment is enabled in `vercel.json`. For a manual deploy, link this checkout to the existing project with `npx vercel link` and run `npx vercel --prod`.
+5. If an old deployment still shows 404, confirm the Root Directory is the repository root (leave it blank), then redeploy the latest commit. Do not set the root to `app` or `dist`.
+6. Check the public site, `/robots.txt`, `/sitemap.xml`, the sharing image and security headers.
 
 ## Maintain the listings
 
 Edit `data/jobs.json`. Before adding a listing, open the specific official careers page and verify its title, company, primary location, requisition ID if available, and Apply button. Categories are directory labels based on the job function. Remove closed or unverifiable listings. The build validates the data shape, duplicate IDs, and exact HTTPS job URL format. The build works offline after dependencies are installed.
 
-The profile photo comes from the header of the supplied SurveySparrow reference. The LinkedIn shortcuts use the supplied OpeninApp link.
+The profile photo comes from the header of the supplied SurveySparrow reference. The LinkedIn shortcuts use the direct profile URL resolved from the reference’s OpeninApp link, avoiding an extra redirect.
 
 ## Security
 

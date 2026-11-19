@@ -36,6 +36,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "git": {
-    "deploymentEnabled": false
+    "deploymentEnabled": true
   }
 }

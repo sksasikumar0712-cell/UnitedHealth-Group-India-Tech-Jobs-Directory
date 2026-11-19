@@ -13,6 +13,7 @@ test('Vercel points to the static export with the required response headers', ()
   assert.equal(headers['Referrer-Policy'], 'no-referrer');
   assert.match(headers['Strict-Transport-Security'], /max-age=\d+/);
   assert.equal(config.outputDirectory, 'dist');
+  assert.equal(config.git.deploymentEnabled, true, 'Git pushes must trigger Vercel deployments');
 });
 
 test('static export has local assets, direct application links and external bootstrap scripts', () => {
@@ -28,7 +29,7 @@ test('static export has local assets, direct application links and external boot
     }
   }
   const html = readFileSync(new URL('index.html', output), 'utf8');
-  const profile = 'href="https://linkedin.openinapp.co/f9dyq"';
+  const profile = 'href="https://www.linkedin.com/in/sasikumarsampath/"';
   assert.equal(html.split(profile).length - 1, 2);
   assert.match(html, /src="\/sasi\.webp"/);
   const jobs = JSON.parse(readFileSync(new URL('../data/jobs.json', import.meta.url)));
